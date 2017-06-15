@@ -8,6 +8,7 @@ var app = express();
 
 app.get('/', (req, res) => {
   //Use moment to determine which format the date is in
+  console.log(req);
   date = moment(req);
   if (isNaN(req)) {
     res.send("The following is a natural language date" +date);
