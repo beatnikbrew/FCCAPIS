@@ -10,9 +10,6 @@ app.get('/', (req, res) => {
   //Use moment to determine which format the date is in
   res.send(req.url);
   date = moment(req);
-  if (isNaN(req)) {
-    res.send("The following is a natural language date" +date);
-  } else {res.send("Unix timestamp is" + date);}
 });
 
 app.listen(port, () => {
