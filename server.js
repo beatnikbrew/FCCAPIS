@@ -8,8 +8,7 @@ var app = express();
 
 app.get('/', (req, res) => {
   //Use moment to determine which format the date is in
-  res.send(req.url);
-  date = moment(req);
+  res.send("Hi");
 });
 
 app.listen(port, () => {
