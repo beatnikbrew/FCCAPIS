@@ -6,11 +6,10 @@ var port = process.env.PORT || 8080;
 
 var app = express();
 
-app.get('/', (req, res) => {
+app.get('/:input', (req, res) => {
   //Use moment to determine which format the date is in
-  res.send(req.url);
-  date = moment(req);
-  if (isNaN(req)) {
+  date = moment(req.params.input);
+  if (isNaN(req.params.input)) {
     res.send("The following is a natural language date" +date);
   } else {res.send("Unix timestamp is" + date);}
 });
