@@ -14,14 +14,14 @@ app.get('/:input', (req, res) => {
     if(moment(date).isValid()) {
       dateObject.Date = date;
     } else {dateObject.Date = null;}
-    dateObject.Unix = moment(date);
+    dateObject.Unix = moment(date).format(x);
     res.send(dateObject);
   } else {
     let dateObject = {};
     if(moment(parseInt(date)).isValid()) {
+      dateObject.Date = moment.unix(parseInt(date).format("dddd, MMMM Do YYYY"));
       dateObject.Unix = date;
-    } else {dateObject.Unix = null;}
-    dateObject.Date = moment.unix(parseInt(date).format("dddd, MMMM Do YYYY"));
+    } else {dateObject.Date = dateObject.Unix =  null;}
     res.send(dateObject);
   }
 });
