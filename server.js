@@ -9,15 +9,16 @@ var app = express();
 app.get('/:input', (req, res) => {
   //Use moment to determine which format the date is in
   date = req.params.input;
+  if (isNaN(date)) { //check for Unix
     res.send("Date: " + dateParser(date));
+  } else {
+    res.send("Date: " + dateParser(parseInt(date)));
+  }
 });
 
-function dateParser(date) {
-  console.log("value: " + date);
-  console.log("moment: " + moment(date));
-  console.log("moment(unix): " + moment.unix(parseInt(date)));
-  if (moment(date).isValid() || moment.unix(parseInt(date)).isValid()) {
-    return moment(date);
+function dateParser(input) {
+  if (moment(input).isValid()) {
+    return moment(input);
   } else {return "Not a valid date";}
 }
 
