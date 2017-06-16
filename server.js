@@ -11,22 +11,26 @@ app.get('/:input', (req, res) => {
   date = req.params.input;
   if (isNaN(date)) { //check for Unix
     let dateObject = {};
-    dateObject.Date = dateParser(date);
+    if(moment(date).isValid()) {
+      dateObject.Date = date;
+    } else {dateObject.Date = null;}
     dateObject.Unix = moment(dateParser(date));
     res.send(dateObject);
   } else {
-    let value = dateParser(parseInt(date));
     let dateObject = {};
-    dateObject.Date = dateParser(parseInt(date));
-    dateObject.Unix = moment(dateParser(parseInt(date)));
+    if(moment(parseInt(date)).isValid()) {
+      dateObject.Unix = moment(parseInt(date));
+    } else {dateObject.Unix = null;}
+    dateObject.Date = moment(parseInt(date));
     res.send(dateObject);
   }
 });
 
+//may not need this if above is smart
 function dateParser(input) {
   if (moment(input).isValid()) {
     return input;
-  } else {return "Not a valid date";}
+  } else {return Null;}
 }
 
 app.listen(port, () => {
