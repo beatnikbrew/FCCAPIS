@@ -10,9 +10,11 @@ app.get('/:input', (req, res) => {
   //Use moment to determine which format the date is in
   date = req.params.input;
   if (isNaN(date)) { //check for Unix
-    res.send("Date: " + dateParser(date));
+    let value = dateParser(date);
+    res.send(responsifyer(value));
   } else {
-    res.send(responsifyer(date));
+    let value = dateParser(parseInt(date));
+    res.send(responsifyer(value));
   }
 });
 
