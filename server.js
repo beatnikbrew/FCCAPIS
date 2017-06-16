@@ -26,12 +26,7 @@ app.get('/:input', (req, res) => {
   }
 });
 
-//may not need this if above is smart
-function dateParser(input) {
-  if (moment(input).isValid()) {
-    return input;
-  } else {return Null;}
-}
+
 
 app.listen(port, () => {
   console.log("listening on " + port);
