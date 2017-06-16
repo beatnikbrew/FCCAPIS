@@ -8,11 +8,17 @@ var app = express();
 
 app.get('/:input', (req, res) => {
   //Use moment to determine which format the date is in
-  date = moment(req.params.input);
-  if (isNaN(req.params.input)) {
-    res.send("The following is a natural language date" +date);
-  } else {res.send("Unix timestamp is" + date);}
+  date = req.params.input;
+  if (isNaN(date)) {
+    res.send("Date: " + dateParser(date));
+  } else {res.send("Unix Timestamp: " + dateParser(date));}
 });
+
+function dateparser(date) {
+  if (moment(date).isValid()) {
+    return moment(date);
+  } else {return err;}
+}
 
 app.listen(port, () => {
   console.log("listening on " + port);
