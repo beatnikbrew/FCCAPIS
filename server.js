@@ -12,7 +12,7 @@ app.get('/:input', (req, res) => {
     res.send("Date: " + dateParser(date));
 });
 
-function dateparser(date) {
+function dateParser(date) {
   if (moment(date).isValid()) {
     return moment(date);
   } else {return "Not a valid date";}
