@@ -13,7 +13,7 @@ app.get('/:input', (req, res) => {
 });
 
 function dateParser(date) {
-  if (moment(date).isValid() || moment(date).unix().isValid()) {
+  if (moment(date).isValid() || moment.unix(date).isValid()) {
     return moment(date);
   } else {return "Not a valid date";}
 }
