@@ -21,7 +21,7 @@ app.get('/:input', (req, res) => {
     if(moment(parseInt(date)).isValid()) {
       dateObject.Unix = date;
     } else {dateObject.Unix = null;}
-    dateObject.Date = moment(parseInt(date).format("dddd, MMMM Do YYYY"));
+    dateObject.Date = moment.unix(parseInt(date).format("dddd, MMMM Do YYYY"));
     res.send(dateObject);
   }
 });
