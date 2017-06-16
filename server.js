@@ -12,7 +12,7 @@ app.get('/:input', (req, res) => {
   if (isNaN(date)) { //check for Unix
     res.send("Date: " + dateParser(date));
   } else {
-    res.send("Date: " + dateParser(parseInt(date)));
+    res.send(responsifyer(date));
   }
 });
 
@@ -20,6 +20,13 @@ function dateParser(input) {
   if (moment(input).isValid()) {
     return moment(input);
   } else {return "Not a valid date";}
+}
+
+function responsifyer(date) {
+  let dateObject = {};
+  dateObject.Date = date;
+  dateObject.Unix = moment(date);
+  return dateObject;
 }
 
 app.listen(port, () => {
