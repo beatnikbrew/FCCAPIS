@@ -20,7 +20,7 @@ app.get('/:input', (req, res) => {
 
 function dateParser(input) {
   if (moment(input).isValid()) {
-    return moment(input);
+    return input;
   } else {return "Not a valid date";}
 }
 
