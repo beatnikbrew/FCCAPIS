@@ -10,11 +10,16 @@ app.get('/:input', (req, res) => {
   //Use moment to determine which format the date is in
   date = req.params.input;
   if (isNaN(date)) { //check for Unix
-    let value = dateParser(date);
-    res.send(responsifyer(value));
+    let dateObject = {};
+    dateObject.Date = dateParser(date);
+    dateObject.Unix = moment(dateParser(date));
+    res.send(dateObject);
   } else {
     let value = dateParser(parseInt(date));
-    res.send(responsifyer(value));
+    let dateObject = {};
+    dateObject.Date = dateParser(parseInt(date));
+    dateObject.Unix = moment(dateParser(parseInt(date)));
+    res.send(dateObject);
   }
 });
 
@@ -22,13 +27,6 @@ function dateParser(input) {
   if (moment(input).isValid()) {
     return input;
   } else {return "Not a valid date";}
-}
-
-function responsifyer(date) {
-  let dateObject = {};
-  dateObject.Date = date;
-  dateObject.Unix = moment(date);
-  return dateObject;
 }
 
 app.listen(port, () => {
