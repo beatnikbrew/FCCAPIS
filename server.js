@@ -13,6 +13,9 @@ app.get('/:input', (req, res) => {
 });
 
 function dateParser(date) {
+  console.log("value: " + date);
+  console.log("moment: " + moment(date));
+  console.log("moment(unix): " + moment.unix(parseInt(date)));
   if (moment(date).isValid() || moment.unix(parseInt(date)).isValid()) {
     return moment(date);
   } else {return "Not a valid date";}
