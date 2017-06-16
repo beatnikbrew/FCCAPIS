@@ -13,9 +13,9 @@ app.get('/:input', (req, res) => {
 });
 
 function dateParser(date) {
+  console.log(date);
+  console.log(moment(date));
   if (moment(date).isValid()) {
-    console.log(date);
-    console.log(moment(date));
     return moment(date);
   } else {return "Not a valid date";}
 }
